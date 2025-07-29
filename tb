@@ -1,0 +1,16 @@
+// Code your testbench here
+// or browse Examples
+`timescale 1ns/1ps
+module tb_lfsr8;
+    reg clk = 0, rst = 0;
+    wire [7:0] lfsr;
+
+    lfsr8 uut (.clk(clk), .rst(rst), .lfsr(lfsr));
+    always #5 clk = ~clk;
+
+    initial begin
+        $dumpfile("lfsr.vcd"); $dumpvars(0, tb_lfsr8);
+        rst = 1; #10 rst = 0;
+        #200 $finish;
+    end
+endmodule
